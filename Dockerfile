@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
 RUN useradd -M -s /bin/bash -u 10001 -g 0 mssql
 RUN mkdir -p -m 770 /var/opt/mssql && chgrp -R 0 /var/opt/mssql
 RUN mkdir -p -m 770 /home/mssql && chgrp -R 0 /home/mssql
+RUN mkdir -p -m 770 /var/log/mssql && chgrp -R 0 /var/log/mssql
 # Grant sql the permissions to connect to ports <1024 as a non-root user
 #
 RUN setcap 'cap_net_bind_service+ep' /opt/mssql/bin/sqlservr
@@ -37,4 +38,5 @@ RUN echo -e "# mssql libs\n/opt/mssql/lib" >> /etc/ld.so.conf.d/mssql.conf
 RUN ldconfig
 
 USER mssql
-CMD ["/opt/mssql/bin/sqlservr"]
+COPY entrypoint.sh /home/mssql/entrypoint.sh
+ENTRYPOINT ["/home/mssql/entrypoint.sh"]
