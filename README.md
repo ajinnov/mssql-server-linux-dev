@@ -47,10 +47,18 @@ SA_PASSWORD=MyStrongPassword@
 -- my_table_1.sql
 ```
 
-3) Build this image
+3) You can either build this image
 
 ```bash
-docker build . -t navision-dev:local
+docker build . -t ajinnov/mssql-server-linux-dev:1.0.0
+```
+
+... or use the public build : 
+
+https://hub.docker.com/r/ajinnov/mssql-server-linux-dev
+
+```
+ajinnov/mssql-server-linux-dev:1.0.0
 ```
 
 4) And run it ...
@@ -59,7 +67,7 @@ docker build . -t navision-dev:local
 docker run -d -v $(pwd)/secrets:/home/mssql/secrets -v mssql_for_dev_data:/var/opt/mssql \
 --env-file=$(pwd)/.env \
  --name sql1 -p 1434:1433 \
- navision-dev:local
+ ajinnov/mssql-server-linux-dev:1.0.0
 ```
 
 If you want to update your database, simply add the files in your bucket and run 
