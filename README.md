@@ -50,7 +50,7 @@ SA_PASSWORD=MyStrongPassword@
 3) You can either build this image
 
 ```bash
-docker build . -t ajinnov/mssql-server-linux-dev:1.0.0
+docker build . -t ajinnov/mssql-server-linux-dev:release-1.0.0
 ```
 
 ... or use the public build : 
@@ -58,7 +58,7 @@ docker build . -t ajinnov/mssql-server-linux-dev:1.0.0
 https://hub.docker.com/r/ajinnov/mssql-server-linux-dev
 
 ```
-ajinnov/mssql-server-linux-dev:1.0.0
+ajinnov/mssql-server-linux-dev:release-1.0.0
 ```
 
 4) And run it ...
@@ -67,7 +67,7 @@ ajinnov/mssql-server-linux-dev:1.0.0
 docker run -d -v $(pwd)/secrets:/home/mssql/secrets -v mssql_for_dev_data:/var/opt/mssql \
 --env-file=$(pwd)/.env \
  --name sql1 -p 1434:1433 \
- ajinnov/mssql-server-linux-dev:1.0.0
+ ajinnov/mssql-server-linux-dev:release-1.0.0
 ```
 
 If you want to update your database, simply add the files in your bucket and run 
